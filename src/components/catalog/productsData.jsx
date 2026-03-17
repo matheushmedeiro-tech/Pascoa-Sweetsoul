@@ -87,6 +87,7 @@ const products = [
     imageMetade: kitMetade,
     featured: false,
     tag: "Novidade",
+    unavailable: true,
   },
 ];
 

@@ -8,6 +8,7 @@ const WHATSAPP_NUMBER = "49998222727";
 
 export default function ProductCard({ product, index }) {
   const hasNutella = NUTELLA_IDS.has(product.id);
+  const isUnavailable = Boolean(product.unavailable);
 
   const qualitySeals = [
     ...(hasNutella ? ["Nutella® Original"] : []),
@@ -65,13 +66,17 @@ export default function ProductCard({ product, index }) {
 
   return (
     <motion.div
-      className="group"
+      className={`group ${isUnavailable ? "pointer-events-none" : ""}`}
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.65, delay: index * 0.07, ease: "easeOut" }}
     >
-      <article className="glass-card rounded-3xl p-4 sm:p-5 shadow-[0_22px_45px_-24px_rgba(35,17,9,0.55)]">
+      <article
+        className={`glass-card rounded-3xl p-4 sm:p-5 shadow-[0_22px_45px_-24px_rgba(35,17,9,0.55)] transition-all duration-300 ${
+          isUnavailable ? "opacity-70" : ""
+        }`}
+      >
         <div className="relative mb-4">
           {product.tag && (
             <motion.span
@@ -85,6 +90,12 @@ export default function ProductCard({ product, index }) {
             </motion.span>
           )}
 
+          {isUnavailable && (
+            <span className="absolute top-3 right-3 z-10 bg-chocolate-dark/90 text-white text-[10px] sm:text-xs font-semibold tracking-[0.16em] uppercase px-3 py-1.5 rounded-full">
+              Esgotado
+            </span>
+          )}
+
           <div className="lg:hidden">
             <div className="relative overflow-hidden rounded-2xl touch-pan-y select-none" ref={emblaRef}>
               <div className="flex">
@@ -94,6 +105,8 @@ export default function ProductCard({ product, index }) {
                       src={slide.src}
                       alt={slide.alt}
                       className={`absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out will-change-transform ${
+                        isUnavailable ? "grayscale saturate-0" : ""
+                      } ${
                         selectedIndex === 1 && slide.isInside ? "scale-105" : "scale-100"
                       }`}
                       loading="lazy"
@@ -147,7 +160,7 @@ export default function ProductCard({ product, index }) {
               <motion.img
                 src={product.imageInteiro}
                 alt={`${product.name} - ovo inteiro`}
-                className="absolute inset-0 h-full w-full object-cover"
+                className={`absolute inset-0 h-full w-full object-cover ${isUnavailable ? "grayscale saturate-0" : ""}`}
                 animate={{ opacity: desktopFlipped ? 0 : 1, scale: desktopFlipped ? 1.05 : 1 }}
                 transition={{ duration: 0.55, ease: "easeInOut" }}
                 loading="lazy"
@@ -156,7 +169,7 @@ export default function ProductCard({ product, index }) {
               <motion.img
                 src={product.imageMetade}
                 alt={`${product.name} - ovo aberto com recheio`}
-                className="absolute inset-0 h-full w-full object-cover"
+                className={`absolute inset-0 h-full w-full object-cover ${isUnavailable ? "grayscale saturate-0" : ""}`}
                 animate={{ opacity: desktopFlipped ? 1 : 0, scale: desktopFlipped ? 1.05 : 1 }}
                 transition={{ duration: 0.55, ease: "easeInOut" }}
                 loading="lazy"
@@ -197,15 +210,26 @@ export default function ProductCard({ product, index }) {
 
           <p className="text-gold font-display text-2xl font-semibold pt-1">{product.price}</p>
 
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-[#20BD5A] hover:shadow-lg hover:shadow-[#25D366]/30"
-          >
-            <MessageCircle className="h-4 w-4" />
-            Pedir pelo WhatsApp
-          </a>
+          {isUnavailable ? (
+            <button
+              type="button"
+              disabled
+              className="mt-1 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-muted px-5 py-3 text-sm font-semibold tracking-wide text-muted-foreground"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Produto indisponível
+            </button>
+          ) : (
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-[#20BD5A] hover:shadow-lg hover:shadow-[#25D366]/30"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Pedir pelo WhatsApp
+            </a>
+          )}
         </div>
       </article>
     </motion.div>
