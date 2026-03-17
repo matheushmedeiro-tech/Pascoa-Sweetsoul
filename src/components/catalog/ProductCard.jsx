@@ -66,7 +66,7 @@ export default function ProductCard({ product, index }) {
 
   return (
     <motion.div
-      className={`group ${isUnavailable ? "pointer-events-none" : ""}`}
+      className="group"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
