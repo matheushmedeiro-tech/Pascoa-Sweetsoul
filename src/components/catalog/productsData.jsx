@@ -24,6 +24,7 @@ const products = [
     imageMetade: kinderMetade,
     featured: true,
     tag: "Mais Vendido",
+    unavailable: true,
   },
   {
     id: "ferrero-rocher",
@@ -35,6 +36,7 @@ const products = [
     imageMetade: ferreroMetade,
     featured: true,
     tag: "Premium",
+    unavailable: true,
   },
   {
     id: "pistache",
@@ -46,6 +48,7 @@ const products = [
     imageMetade: pistacheMetade,
     featured: true,
     tag: "Exclusivo",
+    unavailable: true,
   },
   {
     id: "brownie",
@@ -56,6 +59,7 @@ const products = [
     imageInteiro: brownieInteiro,
     imageMetade: brownieMetade,
     featured: false,
+    unavailable: true,
   },
   {
     id: "brigadeiro",
@@ -66,6 +70,7 @@ const products = [
     imageInteiro: brigadeiroInteiro,
     imageMetade: brigadeiroMetade,
     featured: false,
+    unavailable: true,
   },
   {
     id: "kids",
@@ -76,6 +81,7 @@ const products = [
     imageInteiro: kidsInteiro,
     imageMetade: kidsMetade,
     featured: false,
+    unavailable: true,
   },
   {
     id: "kit-degustacao",
@@ -87,7 +93,7 @@ const products = [
     imageMetade: kitMetade,
     featured: false,
     tag: "Novidade",
-    unavailable: false,
+    unavailable: true,
   },
 ];
 

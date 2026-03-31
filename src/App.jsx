@@ -3,8 +3,9 @@ import React from "react";
 // Banner global de aviso de esgotado
 function SoldOutBanner() {
   return (
-    <div className="w-full bg-red-600 text-white text-center py-3 font-semibold text-base z-50">
-      Todos os ovos estão <span className="font-bold">esgotados</span>! Não estamos mais aceitando novos pedidos.
+    <div className="w-full bg-gradient-to-r from-pink-600 via-yellow-400 to-pink-600 text-white text-center py-4 font-extrabold text-lg z-50 shadow-lg animate-pulse">
+      <span role="img" aria-label="coração">💖</span> Todos os ovos foram <span className="font-black underline decoration-wavy decoration-gold">esgotados</span>!<br/>
+      <span className="block mt-2 text-base font-normal">Agradecemos imensamente por cada pedido, carinho e confiança! Que sua Páscoa seja doce, leve e cheia de bons momentos. <span role="img" aria-label="coelho">🐰</span></span>
     </div>
   );
 }
@@ -76,8 +77,23 @@ const AuthenticatedApp = () => {
 function App() {
   return (
     <>
+      <AppWithSoldOutBanner {...props} />
+    </>
+  );
+}
+
+// ...existing code...
+
+// Adiciona o banner de esgotado no topo do app
+
+function AppWithSoldOutBanner(props) {
+  return (
+    <>
       <SoldOutBanner />
-      <AuthProvider>
+      <App {...props} />
+    </>
+  );
+}
         <QueryClientProvider client={queryClientInstance}>
           <Router>
             <AuthenticatedApp />
