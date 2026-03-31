@@ -77,20 +77,15 @@ const AuthenticatedApp = () => {
 function App() {
   return (
     <>
-      <AppWithSoldOutBanner {...props} />
-    </>
-  );
-}
-
-// ...existing code...
-
-// Adiciona o banner de esgotado no topo do app
-
-function AppWithSoldOutBanner(props) {
-  return (
-    <>
       <SoldOutBanner />
-      <App {...props} />
+      <AuthProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <AuthenticatedApp />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </AuthProvider>
     </>
   );
 }
