@@ -88,16 +88,6 @@ function App() {
       </AuthProvider>
     </>
   );
-}
-        <QueryClientProvider client={queryClientInstance}>
-          <Router>
-            <AuthenticatedApp />
-          </Router>
-          <Toaster />
-        </QueryClientProvider>
-      </AuthProvider>
-    </>
-  );
-}
+
 
 export default App
