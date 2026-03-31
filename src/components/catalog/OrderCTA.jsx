@@ -9,17 +9,13 @@ export default function OrderCTA() {
     <section className="py-24 sm:py-32 px-6 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-chocolate-dark via-chocolate-mid to-primary" />
 
-      <motion.div
-        className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gold/5 blur-3xl"
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent/5 blur-3xl"
-        animate={{ scale: [1.2, 1, 1.2] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
+          <button
+            disabled
+            className="inline-flex items-center gap-3 bg-gray-400 text-white px-10 py-5 rounded-full font-body font-semibold text-base tracking-wide opacity-70 cursor-not-allowed"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Esgotado
+          </button>
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

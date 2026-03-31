@@ -1,4 +1,13 @@
 import { Toaster } from "@/components/ui/toaster"
+import React from "react";
+// Banner global de aviso de esgotado
+function SoldOutBanner() {
+  return (
+    <div className="w-full bg-red-600 text-white text-center py-3 font-semibold text-base z-50">
+      Todos os ovos estão <span className="font-bold">esgotados</span>! Não estamos mais aceitando novos pedidos.
+    </div>
+  );
+}
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
 import { pagesConfig } from './pages.config'
@@ -63,18 +72,21 @@ const AuthenticatedApp = () => {
 };
 
 
-function App() {
 
+function App() {
   return (
-    <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <AuthenticatedApp />
-        </Router>
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
-  )
+    <>
+      <SoldOutBanner />
+      <AuthProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <AuthenticatedApp />
+          </Router>
+          <Toaster />
+        </QueryClientProvider>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App

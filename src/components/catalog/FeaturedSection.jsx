@@ -8,14 +8,12 @@ const NUTELLA_IDS = new Set(["kinder-bueno", "ferrero-rocher", "kit-degustacao"]
 
 function FeaturedCard({ product, reverse }) {
   const hasNutella = NUTELLA_IDS.has(product.id);
-
-  const slides = useMemo(
-    () => [
-      { src: product.imageInteiro, alt: `${product.name} - inteiro`, isInside: false },
-      { src: product.imageMetade, alt: `${product.name} - recheio`, isInside: true },
-    ],
-    [product.imageInteiro, product.imageMetade, product.name],
-  );
+        <button
+          disabled
+          className="inline-flex items-center gap-2 bg-gray-400 text-white px-8 py-4 rounded-full font-body font-semibold text-sm tracking-wide uppercase opacity-70 cursor-not-allowed"
+        >
+          Esgotado
+        </button>
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: false,
